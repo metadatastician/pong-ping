@@ -93,6 +93,10 @@ predecessors did.
 | yes
 | generated arrival pack; the generator, pre-commit and Claude Code all read it from the ROOT (do not hand-edit; edit the a2ml source)
 
+| `CONTRIBUTING.adoc`
+| yes
+| root discovery path required by the shared governance gate
+
 | `Cargo.lock`
 | yes
 | reproducible dependency resolution for the game binary
