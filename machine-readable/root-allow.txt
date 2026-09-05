@@ -36,6 +36,9 @@ CITATION.cff               # citation metadata; GitHub reads it from the root of
 CLAUDE.md                  # generated arrival pack; the generator, pre-commit and Claude Code all read it from the ROOT (do not hand-edit; edit the a2ml source)
 Justfile                   # thin; delegates phases to build/just/*.just
 coordination.k9            # repo-local session binding (template-mandated)
+Cargo.toml                 # Rust package manifest
+Cargo.lock                 # reproducible dependency resolution for the game binary
+CONTRIBUTING.adoc          # root discovery path required by the shared governance gate
 
 # ─── Conventional dotfiles (tool-required at root) ───────────────────────────
 .editorconfig
@@ -75,6 +78,6 @@ tests/
 ?examples/                 # Cargo-conventional at package root
 ?features/                 # optional feature packs
 ?verification/             # proofs; only where formal-proofs is declared
-?CONTRIBUTING.md           # accepted at root OR .github/; .github/ is the canonical estate location
+?CONTRIBUTING.md           # legacy Markdown alternative to the canonical AsciiDoc file
 ?SECURITY.md               # accepted at root OR .github/; likewise
 ?REQUIRES_INITIALISATION.md  # written by the minting process, removed once `just repo-init` runs

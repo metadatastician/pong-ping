@@ -8,6 +8,7 @@
 
 (groove-manifest
   (version "1.0")
+  (project "pong-ping")
 
   ; Service identity — replace pong-ping with your project name
   (service "pong-ping")

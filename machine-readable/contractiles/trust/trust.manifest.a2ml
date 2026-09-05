@@ -21,6 +21,7 @@
 # drift attempts the adversarial pilot is designed to exercise.
 
 ---
+project = "pong-ping"
 trident_version = "1.0.0"
 verb = "trust"
 semantics = "security + provenance + safe-hacking"

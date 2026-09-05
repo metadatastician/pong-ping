@@ -4,6 +4,7 @@
 # A reading, not a decision: re-anchoring is a human authority act (coapt.sh --reanchor).
 
 [receipt]
+project = "pong-ping"
 schema = "hyperpolymath.coaptation/1"
 repo = "pong-ping"
 band = "amber"

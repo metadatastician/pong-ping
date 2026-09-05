@@ -7,6 +7,7 @@
 # the (Hunt, reporting) north-star (intend).
 
 ---
+project = "pong-ping"
 trident_version = "1.0.0"
 verb = "adjust"
 semantics = "drift tolerances + corrective actions"

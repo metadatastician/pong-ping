@@ -95,11 +95,11 @@ predecessors did.
 
 | `Cargo.lock`
 | yes
-| -
+| reproducible dependency resolution for the game binary
 
 | `Cargo.toml`
 | yes
-| -
+| Rust package manifest
 
 | `Justfile`
 | yes

@@ -8,6 +8,7 @@
 # release-blocking contractile concern is covered.
 
 ---
+project = "pong-ping"
 trident_version = "1.0.0"
 verb = "bust"
 semantics = "hard-stop / expiry / must-not-run declarations"

@@ -6,6 +6,7 @@
 # the estate now has tridents for every contractile verb.
 
 ---
+project = "pong-ping"
 trident_version = "1.0.0"
 verb = "dust"
 semantics = "rollback / recovery / deprecation / audit-trail preservation"

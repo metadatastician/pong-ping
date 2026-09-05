@@ -2,6 +2,7 @@
   (version "1.0")
   (dialect "scm")
   (metadata
+    (project "pong-ping")
     (author "Hyperpolymath")
     (description "Directives for Robot Repo Automaton (RRA) enforcing the Platonic Ideal root."))
 

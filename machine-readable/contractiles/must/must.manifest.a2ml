@@ -8,6 +8,7 @@
 # security- and invariant-affecting merge.
 
 ---
+project = "pong-ping"
 trident_version = "1.0.0"
 verb = "must"
 semantics = "invariant assertion — release-blocking"

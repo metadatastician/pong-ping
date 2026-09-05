@@ -40,9 +40,9 @@ items = [
 
 [critical-next-actions]
 actions = [
-  "Push the signed initial implementation to the existing metadatastician/pong-ping remote",
-  "Observe the first remote CI run before making any release claim",
+  "Confirm the follow-up remote CI run after the initial template-integration repairs",
   "Add property-generated states and controls before reassessing readiness",
+  "Accumulate a real dogfooding evidence window before considering CRG C",
 ]
 
 [maintenance-status]

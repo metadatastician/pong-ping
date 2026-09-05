@@ -30,7 +30,7 @@
 | Repository conformance
 | D
 | Local `just quality`, `just e2e`, and `just validate` pass. Initial remote CI
-  has not yet been observed.
+  exposed inherited integration defects; the follow-up run is pending.
 |===
 
 == Why the grade is not higher

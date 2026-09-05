@@ -6,6 +6,7 @@
 # The identity below is DERIVED. The clade is NOT — a human must choose it.
 
 [identity]
+project = "pong-ping"
 # THE UUID IS DERIVED, NOT ALLOCATED, NOT INVENTED. The registry spec
 # (gv-clade-index: docs/SPEC-clade-verisim-portal.adoc §Identity Model):
 #

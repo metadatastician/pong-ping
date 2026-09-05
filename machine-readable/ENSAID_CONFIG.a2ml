@@ -15,6 +15,7 @@
 # [ensaid] — Core eNSAID identity and version
 # ─────────────────────────────────────────────────────────────────
 [ensaid]
+project = "pong-ping"
 version = "1.0.0"
 tool = "panll"
 

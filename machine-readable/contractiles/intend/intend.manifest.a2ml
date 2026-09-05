@@ -18,6 +18,7 @@
 # atomically complete or it is invalid.
 
 ---
+project = "pong-ping"
 trident_version = "1.0.0"
 verb = "intend"
 semantics = "north-star (commitments + aspirations)"
