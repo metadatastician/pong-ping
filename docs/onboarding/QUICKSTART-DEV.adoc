@@ -1,0 +1,63 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= Pong-Ping — Developer quick start
+:toc:
+
+== Stack
+
+Pong-Ping is one dependency-free Rust package containing a library and terminal
+binary. `just` exposes the repository tasks. The deterministic simulation uses
+integer arithmetic only.
+
+== Build and test
+
+[source,sh]
+----
+git clone https://github.com/metadatastician/pong-ping.git
+cd pong-ping
+just build
+just test
+just lint
+just e2e
+----
+
+`just e2e` advances the default machine for 4,096 ticks and then computes every
+inverse tick. It fails unless the complete initial state is recovered exactly.
+
+== Run
+
+[source,sh]
+----
+just run                 # playable, line-oriented controls
+just run demo 120        # animated dual-projection view
+just run trace 256       # contact tensors and direction changes
+just run prove 100000    # large exact round-trip check
+----
+
+== Core files
+
+[cols="1,3"]
+|===
+|Path |Purpose
+
+|`src/lib.rs`
+|Reversible executor, modifiable transit program, meta-interceptor, tensor and renderer.
+
+|`src/main.rs`
+|Play, demo, trace and proof modes; retains external control inputs for undo.
+
+|`tests/reversibility.rs`
+|End-to-end inverse, controlled-contact, third-axis and transactional-error tests.
+
+|`docs/REVERSIBLE-DYNAMICS.adoc`
+|Equations, proof sketch, claim boundary and lossy counterexample.
+|===
+
+== Invariants
+
+* Each accepted step has a computable inverse using the same external control.
+* The meta-interceptor rewrites explicit transit code; it does not fake a bounce
+  by replacing the displayed X coordinate.
+* A code rewrite retains prior information algebraically or is rejected.
+* Rendering and wall-clock values never feed the simulation.
+* The game remains outside flight-control, safety-critical and weapons scope.

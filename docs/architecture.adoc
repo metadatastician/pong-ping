@@ -1,0 +1,73 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= Architecture — Pong-Ping
+:toc:
+
+== System boundary
+
+Pong-Ping is a dependency-free Rust binary and library. The reversible
+`Machine` is the system under test. The CLI and terminal renderer are ordinary
+forward-running adapters around it and are not included in the reversibility
+claim.
+
+The load-bearing invariant is:
+
+_For an accepted control `c`, applying `step(c)` and then `undo(c)` restores
+the exact preceding `Machine` value, including the transit program, interpreter
+direction, paddle positions, phase coordinates, and spin._
+
+== Components
+
+[source]
+----
+external Control
+      |
+      v
++------------------+      contact      +--------------------+
+| reversible       |------------------>| tensor-moment      |
+| transit executor |<------------------| meta-interceptor   |
++------------------+   patched program +--------------------+
+      |
+      +----> folded 3D phase coordinates ----> terminal projections
+----
+
+* `TransitProgram` is code-as-data: a translation instruction plus the patch
+  phase needed to invert contact rewrites.
+* `Direction` chooses the instruction or its algebraic inverse.
+* `MomentTensor3` maps a paddle-relative lever arm into coupled Y/Z impulse.
+* `Machine::step` constructs a candidate state and commits only an accepted
+  transition, so rejected controls cannot partly mutate the machine.
+* `Machine::undo` performs the inverse operations in reverse order without
+  consulting a state-delta history.
+* `render` folds phase coordinates into synchronized X-Y and X-Z projections.
+
+== Data flow
+
+. The caller supplies a `Control`, which may move either paddle in Y and Z.
+. The movement is validated against court bounds.
+. If the next X transit reaches a paddle plane, the contact operator rewrites
+  the transit instruction and flips its interpreter direction.
+. The selected instruction is executed on X and on unfolded Y/Z phase
+  coordinates.
+. Rendering folds Y/Z phases into visible court coordinates. The unfolded
+  representation makes wall reflection a reversible translation rather than a
+  lossy branch.
+
+Undo follows the exact reverse order. External controls are not inferred: the
+caller supplies them again, normally from its own input tape.
+
+== Constraints
+
+* State uses checked integer arithmetic for exact equality and deterministic
+  inversion; it is not floating-point rigid-body physics.
+* The standard tensor is symmetric and integer-scaled. Tensor construction
+  rejects non-symmetric matrices and non-positive scales.
+* Gameplay is experimental and pre-1.0. No public API compatibility is
+  promised yet.
+* Native executable code is never rewritten. The modified object is the
+  interpreted `TransitProgram`, keeping the mechanism inspectable and safe.
+
+== Out of scope
+
+Networking, autonomous control, physical vehicles, guidance systems,
+safety-critical control, and weapons applications are outside this repository.

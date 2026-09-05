@@ -1,0 +1,69 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= AI-assisted installation
+:toc:
+
+This guide covers installing and verifying Pong-Ping. It does not instantiate
+another repository from the RSR template.
+
+[[ai-implementation]]
+== Orient
+
+Before changing the project, read these files in order:
+
+. `0-AI-MANIFEST.a2ml`
+. `CLAUDE.md`
+. `machine-readable/descriptiles/STATE.a2ml`
+. `docs/REVERSIBLE-DYNAMICS.adoc`
+
+== Prerequisites
+
+Pong-Ping requires Git, `just`, and Rust 1.74 or newer. The Rust package has no
+third-party crate dependencies. Do not install a second JavaScript or Python
+runtime for this project.
+
+== Install and verify
+
+[source,sh]
+----
+git clone https://github.com/metadatastician/pong-ping.git
+cd pong-ping
+just build
+just test
+just e2e
+----
+
+A valid `just e2e` run prints that 4,096 forward ticks followed by 4,096 inverse
+ticks restored the exact initial state. A plausible animation is not a
+substitute for that result.
+
+Run `just run` for the playable terminal mode or `just run demo 120` for the
+animated stable orbit.
+
+== Privacy and credentials
+
+The game needs no credentials and performs no telemetry. Building may contact
+the configured Rust registry only if the local toolchain itself needs metadata;
+the package declares no external dependencies. Play-mode control history stays
+in process memory and is discarded on exit.
+
+Do not paste tokens, private keys, or credentials into configuration or chat.
+
+== Failure handling
+
+[cols="1,2"]
+|===
+|Symptom |Action
+
+|`cargo` or `just` is absent
+|Stop and report the missing prerequisite; do not install into an unapproved location.
+
+|A reversibility test fails
+|Treat the implementation as non-reversible until the counterexample is understood and fixed.
+
+|The terminal animation looks wrong but tests pass
+|Inspect the renderer separately; rendering does not feed simulation state.
+
+|A secret scan reports a credential
+|Do not read the value. Rotate it at the source and remove it before continuing.
+|===

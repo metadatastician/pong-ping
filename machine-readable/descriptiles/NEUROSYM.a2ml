@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: MPL-2.0
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# NEUROSYM.a2ml — Neurosymbolic integration metadata
+# Configuration for Hypatia scanning and symbolic reasoning.
+
+[metadata]
+version = "0.1.0"
+last-updated = "2026-04-11"
+
+[hypatia-config]
+scan-enabled = true
+scan-depth = "standard"  # quick | standard | deep
+report-format = "logtalk"
+
+[symbolic-rules]
+rules = [
+  { name = "no-unsafe-rust", pattern = "unsafe", severity = "critical" },
+  { name = "no-lossy-angle-setter", pattern = "set_outgoing_angle", severity = "high" },
+]
+
+[neural-config]
+# Neural pattern detection settings
+# confidence-threshold = 0.85
+# model = "hypatia-v2"

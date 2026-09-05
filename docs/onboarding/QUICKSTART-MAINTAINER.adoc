@@ -1,0 +1,45 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= Pong-Ping — Maintainer quick start
+:toc:
+
+== Runtime and build
+
+Pong-Ping has no runtime assets or third-party crate dependencies. Build with a
+Rust toolchain supporting Rust 1.74 or newer:
+
+[source,sh]
+----
+just build-release
+----
+
+The binary is `target/release/pong-ping`.
+
+== Pre-release evidence
+
+[source,sh]
+----
+just quality
+just e2e
+cargo run --release -- prove 100000
+just validate
+----
+
+Treat a remote CI run as separate evidence. A passing local run does not prove
+that workflows are configured, authorised, or green on the forge.
+
+== Installation
+
+[source,sh]
+----
+cargo install --path . --locked
+----
+
+The application writes no configuration or data files. Play-mode history is an
+in-memory tape of external controls and disappears when the process exits.
+
+== Licence and reporting
+
+Code is MPL-2.0 and documentation is CC-BY-SA-4.0. Report defects at
+https://github.com/metadatastician/pong-ping/issues and security concerns using
+the process in `.github/SECURITY.md`.

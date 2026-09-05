@@ -1,0 +1,64 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= Usage — Pong-Ping
+:toc:
+
+== Requirements
+
+Install a Rust toolchain compatible with Rust 1.74 or newer. `just` is
+recommended for the repository recipes but is not required to run Cargo
+directly. The game has no third-party Rust dependencies.
+
+== Build and check
+
+[source,bash]
+----
+just build
+just test
+just quality
+----
+
+The Cargo equivalents are `cargo build`, `cargo test --workspace`,
+`cargo fmt --all -- --check`, and
+`cargo clippy --workspace --all-targets -- -D warnings`.
+
+== Play
+
+[source,bash]
+----
+just run
+----
+
+The terminal shows an X-Y front view and an X-Z top view. At each prompt:
+
+* `w`, `s`, `a`, and `d` move the left paddle in Y/Z;
+* `i`, `k`, `j`, and `l` move the right paddle in Y/Z;
+* combine one left key and one right key to move both in a tick;
+* press Enter to advance without moving a paddle; and
+* `q` quits.
+
+Manual play is turn based, not raw real-time keyboard input.
+
+== Observe the reversible mechanism
+
+[source,bash]
+----
+just run demo 120
+just run trace 128
+just run prove 4096
+----
+
+`demo` animates the standard stable rally and rewinds it before exiting.
+`trace` prints paddle contacts, direction changes, lever arms, tensor impulses,
+and torque moments, then checks its rewind. `prove N` performs `N` forward
+steps followed by their `N` inverse steps and compares the complete machine
+state with its starting value.
+
+Despite its convenient name, `prove` is a finite executable check rather than
+a formal mathematical proof.
+
+== Stability and limits
+
+Version 0.1.0 is experimental. The Rust library is available for inspection
+and tests, but its API may change before 1.0. The model uses exact integers and
+folded phase coordinates; it does not claim calibrated physical realism.

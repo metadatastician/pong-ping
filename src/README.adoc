@@ -1,0 +1,14 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= Source layout
+
+`lib.rs` is the reversible game kernel. It owns exact 3D phase-space transit,
+the interpreted `TransitProgram`, tensor-moment paddle contacts, inverse
+stepping, and the two-projection renderer.
+
+`main.rs` is the forward-running terminal adapter. It provides `play`, `demo`,
+`trace`, and finite round-trip `prove` modes. Terminal I/O is outside the
+reversible state claim.
+
+The kernel has no third-party Rust dependencies. Run `cargo test --workspace`
+for its unit and integration evidence.

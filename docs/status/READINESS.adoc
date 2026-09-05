@@ -1,0 +1,47 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= Pong-Ping component readiness assessment
+
+*Assessed:* 2026-09-05 +
+*Current Grade:* D +
+*Posture:* alpha-unstable
+
+== Evidence
+
+[cols="2,1,4",options="header"]
+|===
+| Component | Grade | Evidence and boundary
+
+| Reversible state-transition kernel
+| D
+| Exact inverse implementation; eight-test suite includes a 4,096-step round
+  trip and contact/program restoration. No machine-checked universal proof.
+
+| Tensor-moment contact model
+| D
+| Symmetry/scale validation, Y/Z coupling test, traceable lever/impulse/torque
+  events. This is an integer game model, not calibrated physics.
+
+| Terminal game and renderer
+| D
+| Playable turn-based input plus synchronized X-Y/X-Z projections. No real-time
+  or cross-platform interaction test.
+
+| Repository conformance
+| D
+| Local `just quality`, `just e2e`, and `just validate` pass. Initial remote CI
+  has not yet been observed.
+|===
+
+== Why the grade is not higher
+
+CRG C requires sustained dogfooding in the home context and deeper evidence
+than a successful initial implementation session. Pong-Ping has neither an
+evidence window nor external use. It therefore remains D even though the local
+gates pass.
+
+== Promotion target
+
+First observe remote CI and correct any environmental failure. Then add
+property-generated reversible-state tests and record a genuine dogfooding
+period before reassessing C. No release or production-readiness claim is made.

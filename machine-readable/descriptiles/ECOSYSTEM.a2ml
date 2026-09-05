@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: MPL-2.0
+# SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+
+[metadata]
+project = "pong-ping"
+ecosystem = "metadatastician"
+last-updated = "2026-09-05"
+
+[position]
+type = "standalone-game"
+purpose = "A playable 3D experiment in reversible program transit and tensor-moment paddle contacts."
+what-this-is-not = [
+  "the-metadatastician organisational or governance repository",
+  "a component of cleave or any other estate project",
+  "a flight-control, guidance, safety-critical, or weapons system",
+  "a claim that terminal I/O or physical computation is thermodynamically reversible",
+]
+
+[pipeline]
+position = "independent application"
+chain = "rsr-template-repo -> pong-ping"
+notes = "The game is a top-level Metadatastician estate repository with no runtime relationship to other estate projects."
+coordination = "the-metadatastician"
+
+[related-projects]
+projects = [
+  { name = "hyperpolymath/rsr-template-repo", relationship = "instantiated-from", notes = "RSR repository shape and governance scaffolding." },
+  { name = "the-metadatastician", relationship = "estate-coordination", notes = "Organisational context only; no code dependency." },
+]

@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: MPL-2.0
+# SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+
+[metadata]
+project = "pong-ping"
+version = "0.1.0"
+last-updated = "2026-09-05"
+status = "active"
+
+[project-context]
+name = "Pong-Ping"
+purpose = "A reversible 3D Pong game using an interpreted transit program and tensor-derived contact moments."
+completion-percentage = 70
+
+[position]
+phase = "testing"
+maturity = "experimental"
+
+[implemented]
+items = [
+  "exact reversible 3D transit executor",
+  "separate interpreted and reversibly rewritten transit program",
+  "direction-changing paddle meta-interceptor",
+  "symmetric second-moment contact tensor",
+  "3D torque and spin moment accounting",
+  "reversible externally supplied paddle controls",
+  "dual orthographic terminal renderer",
+  "play, demo, trace, and exact proof modes",
+  "round-trip and lossy-positive-control tests",
+]
+
+[limitations]
+items = [
+  "terminal rendering rather than a graphical renderer",
+  "turn-based manual controls rather than raw real-time input",
+  "integer gameplay dynamics, not a calibrated rigid-body physics model",
+  "external controls require the same control tape for undo",
+  "no release artefact has been published",
+]
+
+[critical-next-actions]
+actions = [
+  "Push the signed initial implementation to the existing metadatastician/pong-ping remote",
+  "Observe the first remote CI run before making any release claim",
+  "Add property-generated states and controls before reassessing readiness",
+]
+
+[maintenance-status]
+last-run-utc = "never"
+last-report = ""
+last-result = "unknown"
+open-warnings = 0
+open-failures = 0

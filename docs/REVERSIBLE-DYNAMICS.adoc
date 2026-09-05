@@ -1,0 +1,79 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+
+= Reversible dynamics
+
+Pong-Ping is a three-dimensional reversible simulation, not merely a game with
+an undo snapshot. This note states the exact claim and its boundary.
+
+== State and ordinary motion
+
+The court has a normal X axis and two tangential axes, Y and Z. The ball stores
+an X position, folded Y/Z phase coordinates, and a spin moment. A separate,
+interpreted `TransitProgram` stores the translation instruction `p`. The
+executor stores a direction sign `d` in `{+1, -1}` and applies either the
+instruction or its exact inverse.
+
+One free-flight tick is an integer translation:
+
+[stem]
+++++
+D_d(q,p) = (q + d p, p)
+++++
+
+Its inverse is `D_-d`. Y and Z live on doubled integer periods and are folded
+for display. This is the exact triangular-wave construction: wall reflection
+does not clamp, round, or discard a hidden overshoot.
+
+== The metafunction at a paddle
+
+At a paddle, the contact lever arm in the paddle plane is
+`r = (0, delta-y, delta-z)`. A symmetric second-moment tensor maps that lever
+arm to a coupled tangential impulse:
+
+[stem]
+++++
+M = 1/2 ((0,0,0),(0,2,1),(0,1,2)),  J = M r + u
+++++
+
+where `u` is that tick's paddle-control contribution. The off-diagonal terms
+are intentional: a Y offset can change Z momentum and vice versa. Torque is
+the three-dimensional cross product `tau = r times (2,J_y,J_z)`.
+
+The interceptor modifies the transit program and then reverses its executor:
+
+[stem]
+++++
+H_d(program(p),L,d) = (program(p + d J), L + d tau, -d)
+++++
+
+The program is code represented as explicit state, rather than native machine
+text. That makes the code rewrite portable and inspectable. The lever arm,
+tensor, and input do not change during `H`. Therefore the second application
+sees the same `J` and `tau` but the opposite sign:
+
+[stem]
+++++
+H_(-d)(H_d(p,L,d)) = (p,L,d)
+++++
+
+This is the crucial difference from setting an outgoing angle. A setter maps
+many incoming momenta to one result and destroys the information needed to run
+backward. The tensor shear retains it algebraically. The host-side interceptor
+executes in ordinary forward wall-clock code, but the state transformation it
+performs is self-inverse.
+
+== What is and is not reversible
+
+`Machine::step(control)` followed later by `Machine::undo(control)` restores
+the exact state. The tests exercise thousands of ticks across repeated paddle
+contacts. They also include a positive control showing that a naive outgoing-
+angle setter really does collapse two distinct incoming states.
+
+User input originates outside the machine, so the terminal UI retains the
+sequence of controls. It does not retain simulation snapshots or state deltas.
+Terminal output, wall-clock scheduling, operating-system input, and the
+physical computer are not claimed to be thermodynamically reversible.
+
+This is an educational game and reversible-computation experiment. It is not
+flight-control, guidance, safety-critical, or weapons software.

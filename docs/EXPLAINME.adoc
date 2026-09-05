@@ -1,0 +1,53 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= Pong-Ping — Explain Me
+:toc:
+
+Pong-Ping is a small experiment in applying algorithmic reversibility to a
+game mechanic. The host process always advances in ordinary wall-clock order.
+Inside it, however, a simulated transit interpreter can execute its current
+instruction either forward or backward.
+
+== The unusual part
+
+The ball does not bounce by assigning `velocity.x = -velocity.x`. Ordinary
+motion is an interpreted `TransitProgram`. At a paddle, a separate
+meta-interceptor:
+
+. derives a contact lever arm from the ball and paddle coordinates;
+. applies a symmetric second-moment tensor to that lever arm;
+. shears the program's translation instruction by the resulting impulse;
+. records spin through an invertible torque update; and
+. flips the interpreter's execution direction.
+
+The next transit step therefore executes the inverse of a _modified_
+instruction. That makes the departing path differ from the arriving path while
+keeping the full transition one-to-one.
+
+The interceptor is not an unrecorded overwrite. Its patch phase, program
+translation, spin, and direction all belong to the reversible state. Applying
+the matching inverse contact operation recovers their previous values.
+
+== Where the evidence lives
+
+* `src/lib.rs` contains the state model, interpreter, contact operator, inverse
+  step, tensor, and terminal projection renderer.
+* `src/main.rs` exposes playable, demonstration, trace, and round-trip modes.
+* `tests/reversibility.rs` exercises long reversal, controlled rewriting,
+  three-dimensional tensor coupling, transactionality, and rendering.
+* `docs/REVERSIBLE-DYNAMICS.adoc` states the algebra and the limits of the
+  reversibility claim.
+* `docs/AFFIRMATION.adoc` records the checks actually run for the initial
+  implementation.
+
+== Trust boundary
+
+`Machine::undo(control)` needs the same externally supplied control value used
+for the corresponding forward step. The engine deliberately stores no hidden
+state snapshots; a caller that supplies controls must retain that input tape.
+Terminal I/O, elapsed real time, process signals, and the user's decisions are
+outside the reversible machine.
+
+The word _prove_ in the command-line mode means an executable equality check
+over a requested finite run. It does not mean a machine-checked universal
+theorem.

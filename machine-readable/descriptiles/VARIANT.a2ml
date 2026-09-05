@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: MPL-2.0
+#
+# VARIANT.a2ml — provenance contract (ADR-0002 shape; ADR-0003 use).
+# Records what this repo was minted from so the drift gate
+# (scripts/check-variant-drift.sh <parent-checkout>) and future
+# re-templating tooling have a defined input.
+#
+# NOTE: placeholder rendering means many files differ from the
+# parent by design; folding rendered answers into [normalise] is
+# future work (ADR-0003), so the gate is informational for minted
+# repos until then.
+
+[metadata]
+project = "pong-ping"
+schema_version = "0.1.0"
+last-updated = "2026-09-05"
+
+[variant]
+parent = "hyperpolymath/rsr-template-repo"
+parent-pin = "805ecb7a9dd9113452f034ff47b04ac1b8354908"  # template tip at mint
+role = "minted-repo"
+stack = "rust"
+direction = "generated-from-core"
+
+[normalise]
+rules = "action-pins self-name"
+
+[paths.added]
+paths = [
+  "Cargo.toml",
+  "Cargo.lock",
+  "src/lib.rs",
+  "src/main.rs",
+  "tests/reversibility.rs",
+  "docs/REVERSIBLE-DYNAMICS.adoc",
+]
+
+[paths.removed]
+paths = []
+
+[paths.diverged]
+# Files a minted repo owns from birth.
+paths = [
+  "machine-readable/descriptiles/CLADE.a2ml",
+  "machine-readable/descriptiles/VARIANT.a2ml",
+  "machine-readable/rsr-profile.a2ml",
+  "machine-readable/descriptiles/ECOSYSTEM.a2ml",
+  "machine-readable/descriptiles/STATE.a2ml",
+  "machine-readable/descriptiles/anchors/ANCHOR.a2ml",
+  "README.adoc",
+  "Justfile",
+]

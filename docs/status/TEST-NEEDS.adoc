@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= Test needs — Pong-Ping
+
+== Current evidence
+
+As of 2026-09-05, `cargo test --workspace` runs eight tests: two unit tests and
+six integration tests. They cover:
+
+* the contact interceptor's exact involution;
+* a planted lossy-angle-setter positive control, demonstrating that the test
+  can detect distinct states collapsing to one state;
+* a 4,096-step exact forward/inverse round trip;
+* interpreter direction changes and use of the third spatial axis;
+* Y-to-Z coupling by the symmetric tensor;
+* exact restoration across a controlled program rewrite;
+* transactional rejection of an invalid paddle control; and
+* both X-Y and X-Z render projections.
+
+The executable `prove` mode has additionally completed a 100,000-step
+round-trip check locally. This increases the tested horizon but is not a
+universal proof.
+
+== Still needed
+
+* Property-based generation over valid courts, states, tensors, and control
+  tapes, with overflow-aware bounds.
+* Tests around simultaneous boundary/contact conditions and all rejected
+  transition paths.
+* Cross-platform checks, particularly Windows terminal behaviour.
+* Fuzzing of command parsing and state-transition inputs.
+* A machine-checked model if a universal theorem is eventually claimed.
+* A real-time or graphical interaction test if the renderer evolves beyond the
+  current turn-based terminal interface.
+
+== Current grade boundary
+
+The core has per-capability tests and documented scope, supporting CRG D
+(_alpha-unstable_). It has not accumulated the dogfooding evidence required for
+CRG C and must not inherit the template repository's historical grade.

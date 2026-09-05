@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= Proof status — Pong-Ping
+
+== Status
+
+No formal proof is claimed or completed.
+
+The repository contains an algebraic design argument in
+`docs/REVERSIBLE-DYNAMICS.adoc`, an exact inverse implementation in
+`src/lib.rs`, and executable round-trip tests. Those are useful evidence, but
+they do not constitute a machine-checked theorem over every representable
+state.
+
+The CLI subcommand named `prove` is a finite checker: for the requested number
+of ticks, it executes forward, executes the corresponding inverse transitions,
+and compares the complete state. Its output must be described as a
+_round-trip check_, not as universal formal verification.
+
+== Candidate theorem
+
+For every valid machine state `S` and accepted control `c` for which all checked
+integer operations remain in range:
+
+[source]
+----
+undo(step(S, c), c) = S
+----
+
+A future proof must cover ordinary transit, paddle movement, tensor-derived
+program rewriting, direction reversal, phase folding, event detection, and all
+checked-arithmetic preconditions. It must also distinguish the reversible
+machine from terminal I/O and the external control tape.
+
+== Current executable evidence
+
+[source,bash]
+----
+cargo test --workspace
+cargo run --quiet -- prove 100000
+----
+
+See `docs/status/TEST-NEEDS.adoc` for uncovered cases.

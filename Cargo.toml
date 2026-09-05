@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: MPL-2.0
+
+[package]
+name = "pong-ping"
+version = "0.1.0"
+edition = "2021"
+description = "A three-dimensional Pong game built on an exactly reversible simulation kernel"
+license = "MPL-2.0"
+repository = "https://github.com/metadatastician/pong-ping"
+rust-version = "1.74"
+
+[lib]
+name = "pong_ping"
+path = "src/lib.rs"
+
+[[bin]]
+name = "pong-ping"
+path = "src/main.rs"
+
+[dependencies]
+
+[lints.rust]
+unsafe_code = "forbid"

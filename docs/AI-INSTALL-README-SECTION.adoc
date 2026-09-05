@@ -1,0 +1,7 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+= AI-install README section
+
+The repository README contains its required `AI-Assisted Installation` section.
+The complete, project-specific procedure and privacy boundary live in
+link:AI_INSTALLATION_GUIDE.adoc[AI-assisted installation].
