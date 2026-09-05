@@ -40,7 +40,7 @@ items = [
 
 [critical-next-actions]
 actions = [
-  "Confirm the follow-up remote CI run after the initial template-integration repairs",
+  "Keep the established remote CI baseline green and investigate regressions from their logs",
   "Add property-generated states and controls before reassessing readiness",
   "Accumulate a real dogfooding evidence window before considering CRG C",
 ]

@@ -30,7 +30,8 @@
 | Repository conformance
 | D
 | Local `just quality`, `just e2e`, and `just validate` pass. Initial remote CI
-  exposed inherited integration defects; the follow-up run is pending.
+  exposed inherited integration defects; the follow-up Rust, governance,
+  estate-rules, dogfood, and static-analysis gates passed after repair.
 |===
 
 == Why the grade is not higher
