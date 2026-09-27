@@ -8,7 +8,7 @@ image:https://img.shields.io/badge/Code-MPL--2.0-blue.svg?logo=mozilla[Code lice
 image:https://img.shields.io/badge/Docs-CC--BY--SA--4.0-blue.svg?logo=creativecommons[Docs licence: CC-BY-SA-4.0,link="https://creativecommons.org/licenses/by-sa/4.0/"]
 image:https://img.shields.io/badge/RSR-Rhodium_Standard-9C27B0[RSR repository,link="https://github.com/hyperpolymath/rhodium-standard-repositories"]
 
-A playable, three-dimensional Pong experiment in which paddle contact really
+A playable, three-dimensional Ping-Pong experiment in which paddle contact really
 reverses the simulated program direction. A tensor-moment interceptor changes
 the reverse trajectory without destroying the information required to undo it.
 
